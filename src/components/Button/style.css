@@ -1,0 +1,31 @@
+button {
+  border: none;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 25%;
+  color: #f1f1f1;
+  font-size: 22px;
+  padding: 10px;
+  border-right: 1px solid #111111;
+  border-bottom: 1px solid #111111;
+}
+
+.button-operator {
+  background-color: #ff9900;
+}
+
+.button-number {
+  background-color: #777777;
+}
+
+.button-other {
+  background-color: #555555;
+}
+
+.button-zero {
+  width: 50%;
+}

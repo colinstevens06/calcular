@@ -1,0 +1,13 @@
+.output {
+  background-color: #333333;
+  color: #e6e6e6;
+  display: flex;
+  justify-self: end;
+  font-size: 26px;
+  padding: 10px;  
+  width: 100%;
+  align-content: center;
+  border: 1px solid #111111;
+}
+
+
