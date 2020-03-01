@@ -68,8 +68,8 @@ class Calc extends React.Component {
     if (typeof parseInt(this.state.value) === isNaN) return
     let answer = null;
     let operator = this.state.previousOperator;
-    let previousNumber = parseInt(this.state.previousNumber)
-    let currentNumber = parseInt(this.state.value)
+    let previousNumber = parseFloat(this.state.previousNumber)
+    let currentNumber = parseFloat(this.state.value)
 
     switch (operator) {
       case "+":
@@ -128,7 +128,7 @@ class Calc extends React.Component {
         <Button className="button button-number" value="3" onClick={this.appendNumber}>3</Button>
         <Button className="button button-operator" value="+" onClick={this.operatorClick}>+</Button>
         <Button className="button button-number button-zero" value="0" onClick={this.appendNumber}>0</Button>
-        <Button className="button button-number">.</Button>
+        <Button className="button button-number" value="." onClick={this.appendNumber}>.</Button>
         <Button className="button button-operator" onClick={this.doMath}>=</Button>
 
       </Wrapper>
