@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.css';
 import Calculator from "./components/Calculator"
+import Calc from "./components/Calculator-2"
 
 function App() {
   return (
-    <Calculator />
+    <div>
+      <Calculator />
+      <div style={{ marginBottom: "25px" }}></div>
+      <Calc />
+
+    </div >
   );
 }
 

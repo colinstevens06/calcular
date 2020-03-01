@@ -3,13 +3,13 @@ import Wrapper from "./Wrapper";
 import Button from "./Button";
 import Output from "./Output"
 
-class Calculator extends React.Component {
+class Calc extends React.Component {
 
   state = {
     value: "",
-    useNumber: null,
-    carryOverNumber: null,
-    useOperator: null,
+    previousNumber: null,
+    previousOperator: "",
+    currentOperator: null,
     answer: null,
   }
 
@@ -17,80 +17,94 @@ class Calculator extends React.Component {
     event.preventDefault();
     let newValue = this.state.value + event.target.value;
     this.setState({
-      value: newValue
+      value: newValue,
+      currentNumber: newValue,
     })
+    console.log("Number Click")
+    console.log(this.state)
+  }
+
+  clear() {
+
   }
 
   operatorClick = (event) => {
-    event.preventDefault();
-    // capture the value, parseInt and set it to carryOverNumber
-    let useNumber = parseInt(this.state.value)
-    let useOperator = event.target.value
-
-    if (this.state.carryOverNumber !== null) {
+    if (this.state.previousOperator !== "") {
       this.doMath()
+      let operationValue = event.target.value;
       this.setState({
-        value: ""
+        previousOperator: operationValue
       })
-    } else {
-      this.setState({
-        value: "",
-        useNumber: useNumber,
-        useOperator: useOperator,
-        carryOverNumber: useNumber
-      })
-      console.log("Else statement:")
-      console.log(this.state)
 
+
+      return
     }
-    console.log(this.state)
 
-  }
+    // clicks the operation
+    // get the value of the number and put it in a previousNumber state
+    let number = this.state.value
 
-  equalClick = (event) => {
-    event.preventDefault();
-    this.doMath()
+    // get the value of the operator and put that in the previousOperator state
+    let operationValue = event.target.value;
+
+    // clear out what it says on the calculator
+
     this.setState({
-      value: this.state.answer
+      previousNumber: number,
+      previousOperator: operationValue,
+      value: ""
     })
-
+    console.log(this.state)
   }
 
   doMath() {
-    // do math
-    let mathValue;
-    let carryOverNumber = parseInt(this.state.carryOverNumber)
-    let useNumber = parseInt(this.state.value)
-    let useOperator = this.state.useOperator
-    // Assign value based on the operator
-    switch (this.state.useOperator) {
+    let answer = null;
+    let operator = this.state.previousOperator;
+    let previousNumber = parseInt(this.state.previousNumber)
+    let currentNumber = parseInt(this.state.value)
+
+    switch (operator) {
       case "+":
-        mathValue = carryOverNumber + useNumber;
+        answer = previousNumber + currentNumber;
         break;
       case "-":
-        mathValue = carryOverNumber - useNumber;
+        answer = previousNumber - currentNumber;
         break;
       case "x":
-        mathValue = carryOverNumber * useNumber;
+        answer = previousNumber * currentNumber;
         break;
       case "/":
-        mathValue = carryOverNumber / useNumber;
+        answer = previousNumber / currentNumber;
         break;
       default:
-        mathValue = NaN;
+        answer = NaN;
     }
-    console.log(mathValue)
+    console.log(answer)
+    console.log("This.state.answer: " + this.state.answer)
+
     this.setState({
-      carryOverNumber: mathValue,
-      useNumber: useNumber,
-      useOperator: useOperator,
-      answer: mathValue,
+      answer: answer,
+      previousOperator: null,
+      value: "",
+      previousNumber: answer,
     })
+    console.log("After math state. Answer should be updated, but it's not showing as updated")
+    console.log("This.state.answer later on: " + this.state.answer)
+
+    console.log(this.state)
   }
+
+  updateDisplay() {
+
+  }
+
+
+
 
   render() {
     return (
       <Wrapper>
+        <Output>{this.state.answer}</Output>
         <Output>{this.state.value}</Output>
         <Button className="button button-other">AC</Button>
         <Button className="button button-other">+/-</Button>
@@ -117,4 +131,4 @@ class Calculator extends React.Component {
   }
 }
 
-export default Calculator;
+export default Calc;
