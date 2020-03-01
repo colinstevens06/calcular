@@ -125,9 +125,8 @@ class Calc extends React.Component {
       <Wrapper>
         <Output>{this.state.answer}</Output>
         <Output>{this.state.value}</Output>
-        <Button className="button button-other" onClick={this.clear}>AC</Button>
+        <Button className="button button-other button-50" onClick={this.clear}>AC</Button>
         <Button className="button button-other" onClick={this.positiveNegative}>+/-</Button>
-        <Button className="button button-other">%</Button>
         <Button className="button button-operator" value="/" onClick={this.operatorClick}>/</Button>
         <Button className="button button-number" value="7" onClick={this.appendNumber}>7</Button>
         <Button className="button button-number" value="8" onClick={this.appendNumber}>8</Button>
@@ -141,7 +140,7 @@ class Calc extends React.Component {
         <Button className="button button-number" value="2" onClick={this.appendNumber}>2</Button>
         <Button className="button button-number" value="3" onClick={this.appendNumber}>3</Button>
         <Button className="button button-operator" value="+" onClick={this.operatorClick}>+</Button>
-        <Button className="button button-number button-zero" value="0" onClick={this.appendNumber}>0</Button>
+        <Button className="button button-number button-50" value="0" onClick={this.appendNumber}>0</Button>
         <Button className="button button-number" value="." onClick={this.appendNumber}>.</Button>
         <Button className="button button-operator" onClick={this.doMath}>=</Button>
 
