@@ -51,9 +51,6 @@ class Calc extends React.Component {
     // clicks the operation
     // get the value of the number and put it in a previousNumber state
     let number = this.state.value
-    // number = number.toString()
-    // console.log("Number:")
-    // console.log(number)
 
     // get the value of the operator and put that in the previousOperator state
     let operationValue = event.target.value;
@@ -73,7 +70,13 @@ class Calc extends React.Component {
     let answer = null;
     let operator = this.state.previousOperator;
     let previousNumber = parseFloat(this.state.previousNumber)
-    let currentNumber = parseFloat(this.state.value)
+    let currentNumber = this.state.value
+
+    if (operator === "x" && currentNumber.charAt(0) === "-") {
+      return
+    } else {
+      currentNumber = parseFloat(currentNumber)
+    }
 
     switch (operator) {
       case "+":
@@ -103,13 +106,27 @@ class Calc extends React.Component {
     console.log(this.state)
   }
 
+
+  positiveNegative = () => {
+    let number = this.state.value
+    if (number.charAt(0) !== "-") {
+      number = "-" + number;
+    } else {
+      number = number.slice(1)
+    }
+
+    this.setState({
+      value: number
+    })
+  }
+
   render() {
     return (
       <Wrapper>
         <Output>{this.state.answer}</Output>
         <Output>{this.state.value}</Output>
         <Button className="button button-other" onClick={this.clear}>AC</Button>
-        <Button className="button button-other">+/-</Button>
+        <Button className="button button-other" onClick={this.positiveNegative}>+/-</Button>
         <Button className="button button-other">%</Button>
         <Button className="button button-operator" value="/" onClick={this.operatorClick}>/</Button>
         <Button className="button button-number" value="7" onClick={this.appendNumber}>7</Button>
