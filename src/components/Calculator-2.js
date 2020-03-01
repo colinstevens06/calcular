@@ -24,7 +24,14 @@ class Calc extends React.Component {
     console.log(this.state)
   }
 
-  clear() {
+  clear = () => {
+    this.setState({
+      value: "",
+      previousNumber: null,
+      previousOperator: "",
+      currentOperator: null,
+      answer: null,
+    })
 
   }
 
@@ -57,7 +64,8 @@ class Calc extends React.Component {
     console.log(this.state)
   }
 
-  doMath() {
+  doMath = () => {
+    if (typeof parseInt(this.state.value) === isNaN) return
     let answer = null;
     let operator = this.state.previousOperator;
     let previousNumber = parseInt(this.state.previousNumber)
@@ -98,15 +106,12 @@ class Calc extends React.Component {
 
   }
 
-
-
-
   render() {
     return (
       <Wrapper>
         <Output>{this.state.answer}</Output>
         <Output>{this.state.value}</Output>
-        <Button className="button button-other">AC</Button>
+        <Button className="button button-other" onClick={this.clear}>AC</Button>
         <Button className="button button-other">+/-</Button>
         <Button className="button button-other">%</Button>
         <Button className="button button-operator" value="/" onClick={this.operatorClick}>/</Button>
@@ -124,7 +129,7 @@ class Calc extends React.Component {
         <Button className="button button-operator" value="+" onClick={this.operatorClick}>+</Button>
         <Button className="button button-number button-zero" value="0" onClick={this.appendNumber}>0</Button>
         <Button className="button button-number">.</Button>
-        <Button className="button button-operator" onClick={this.equalClick}>=</Button>
+        <Button className="button button-operator" onClick={this.doMath}>=</Button>
 
       </Wrapper>
     )
