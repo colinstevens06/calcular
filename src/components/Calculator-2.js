@@ -33,6 +33,9 @@ class Calc extends React.Component {
       answer: null,
     })
 
+    console.log("State Cleared")
+    console.log(this.state)
+
   }
 
   operatorClick = (event) => {
@@ -42,24 +45,25 @@ class Calc extends React.Component {
       this.setState({
         previousOperator: operationValue
       })
-
-
       return
     }
 
     // clicks the operation
     // get the value of the number and put it in a previousNumber state
     let number = this.state.value
+    // number = number.toString()
+    // console.log("Number:")
+    // console.log(number)
 
     // get the value of the operator and put that in the previousOperator state
     let operationValue = event.target.value;
 
     // clear out what it says on the calculator
-
     this.setState({
       previousNumber: number,
       previousOperator: operationValue,
-      value: ""
+      value: "",
+      answer: null
     })
     console.log(this.state)
   }
@@ -88,22 +92,15 @@ class Calc extends React.Component {
         answer = NaN;
     }
     console.log(answer)
-    console.log("This.state.answer: " + this.state.answer)
 
     this.setState({
       answer: answer,
-      previousOperator: null,
+      previousOperator: "",
       value: "",
       previousNumber: answer,
     })
-    console.log("After math state. Answer should be updated, but it's not showing as updated")
-    console.log("This.state.answer later on: " + this.state.answer)
 
     console.log(this.state)
-  }
-
-  updateDisplay() {
-
   }
 
   render() {
