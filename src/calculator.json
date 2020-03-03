@@ -1,0 +1,92 @@
+[
+  {
+    "className": "button button-other button-50",
+    "click": "{clear}",
+    "value": "AC"
+  },
+  {
+    "className": "button button-other button-pos-neg",
+    "click": "{positiveNegative}",
+    "value": "+/-"
+  },
+  {
+    "className": "button button-operator",
+    "click": "{operatorClick}",
+    "value": "/"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "7"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "8"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "9"
+  },
+  {
+    "className": "button button-operator",
+    "click": "{operatorClick}",
+    "value": "x"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "4"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "5"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "6"
+  },
+  {
+    "className": "button button-operator",
+    "click": "{operatorClick}",
+    "value": "-"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "1"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "2"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "3"
+  },
+  {
+    "className": "button button-operator",
+    "click": "{operatorClick}",
+    "value": "+"
+  },
+  {
+    "className": "button button-number button-50",
+    "click": "{appendNumber}",
+    "value": "0"
+  },
+  {
+    "className": "button button-number",
+    "click": "{appendNumber}",
+    "value": "."
+  },
+  {
+    "className": "button button-operator button-equal",
+    "click": "{doMath}",
+    "value": "="
+  }
+]

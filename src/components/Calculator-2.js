@@ -2,6 +2,7 @@ import React from "react";
 import Wrapper from "./Wrapper";
 import Button from "./Button";
 import Output from "./Output"
+import calculator from "../calculator.json"
 
 class Calc extends React.Component {
 
@@ -11,11 +12,12 @@ class Calc extends React.Component {
     previousOperator: "",
     currentOperator: null,
     answer: null,
+    calculator: calculator,
   }
 
-  appendNumber = (event) => {
-    event.preventDefault();
-    let newValue = this.state.value + event.target.value;
+  appendNumber = (number) => {
+    // event.preventDefault();
+    let newValue = this.state.value + number;
     this.setState({
       value: newValue,
       currentNumber: newValue,
@@ -38,12 +40,11 @@ class Calc extends React.Component {
 
   }
 
-  operatorClick = (event) => {
+  operatorClick = (operator) => {
     if (this.state.previousOperator !== "") {
       this.doMath()
-      let operationValue = event.target.value;
       this.setState({
-        previousOperator: operationValue
+        previousOperator: operator
       })
       return
     }
@@ -53,7 +54,7 @@ class Calc extends React.Component {
     let number = this.state.value
 
     // get the value of the operator and put that in the previousOperator state
-    let operationValue = event.target.value;
+    let operationValue = operator;
 
     // clear out what it says on the calculator
     this.setState({
@@ -106,6 +107,28 @@ class Calc extends React.Component {
     console.log(this.state)
   }
 
+  handleClick = (event) => {
+    event.preventDefault()
+    // if (this.data-click === "clear");
+    let thisButton = event.target.className;
+    let value = event.target.value
+    switch (thisButton) {
+      case "button button-operator": this.operatorClick(value);
+        break;
+      case "button button-number": this.appendNumber(value);
+        break;
+      case "button button-other button-pos-neg": this.positiveNegative();
+        break;
+      case "button button-number button-50": this.appendNumber(value);
+        break;
+      case "button button-operator button-equal": this.doMath();
+        break;
+
+      default:
+        this.clear();
+
+    }
+  }
 
   positiveNegative = () => {
     let number = this.state.value
@@ -125,24 +148,23 @@ class Calc extends React.Component {
       <Wrapper>
         <Output>{this.state.answer}</Output>
         <Output>{this.state.value}</Output>
-        <Button className="button button-other button-50" onClick={this.clear}>AC</Button>
-        <Button className="button button-other" onClick={this.positiveNegative}>+/-</Button>
-        <Button className="button button-operator" value="/" onClick={this.operatorClick}>/</Button>
-        <Button className="button button-number" value="7" onClick={this.appendNumber}>7</Button>
-        <Button className="button button-number" value="8" onClick={this.appendNumber}>8</Button>
-        <Button className="button button-number" value="9" onClick={this.appendNumber}>9</Button>
-        <Button className="button button-operator" value="x" onClick={this.operatorClick}>x</Button>
-        <Button className="button button-number" value="4" onClick={this.appendNumber}>4</Button>
-        <Button className="button button-number" value="5" onClick={this.appendNumber}>5</Button>
-        <Button className="button button-number" value="6" onClick={this.appendNumber}>6</Button>
-        <Button className="button button-operator" value="-" onClick={this.operatorClick}>-</Button>
-        <Button className="button button-number" value="1" onClick={this.appendNumber}>1</Button>
-        <Button className="button button-number" value="2" onClick={this.appendNumber}>2</Button>
-        <Button className="button button-number" value="3" onClick={this.appendNumber}>3</Button>
-        <Button className="button button-operator" value="+" onClick={this.operatorClick}>+</Button>
-        <Button className="button button-number button-50" value="0" onClick={this.appendNumber}>0</Button>
-        <Button className="button button-number" value="." onClick={this.appendNumber}>.</Button>
-        <Button className="button button-operator" onClick={this.doMath}>=</Button>
+
+        {this.state.calculator.map(button => (
+          <Button
+            className={button.className}
+            // onClick={eval(button.click)}
+            onClick={this.handleClick}
+            value={button.value}
+            key={button.value}
+          >
+            {console.log(button.click)}
+            {button.value}
+          </Button>
+        )
+
+        )
+        }
+
 
       </Wrapper>
     )
