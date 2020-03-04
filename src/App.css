@@ -1,3 +1,13 @@
+/* body {
+
+  background-color: #f1f1f1;
+} */
+
+html {
+  background-image: linear-gradient(to bottom right, rgb(79, 134, 236), rgb(117, 255, 170));
+
+}
+
 .App {
   text-align: center;
 }

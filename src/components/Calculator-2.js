@@ -3,6 +3,7 @@ import Wrapper from "./Wrapper";
 import Button from "./Button";
 import Output from "./Output"
 import calculator from "../calculator.json"
+import Centerer from "./Centerer";
 
 class Calc extends React.Component {
 
@@ -145,28 +146,24 @@ class Calc extends React.Component {
 
   render() {
     return (
-      <Wrapper>
-        <Output>{this.state.answer}</Output>
-        <Output>{this.state.value}</Output>
+      <Centerer>
+        <Wrapper>
+          <Output>{this.state.answer}</Output>
+          <Output>{this.state.value}</Output>
 
-        {this.state.calculator.map(button => (
-          <Button
-            className={button.className}
-            // onClick={eval(button.click)}
-            onClick={this.handleClick}
-            value={button.value}
-            key={button.value}
-          >
-            {console.log(button.click)}
-            {button.value}
-          </Button>
-        )
-
-        )
-        }
-
-
-      </Wrapper>
+          {this.state.calculator.map(button => (
+            <Button
+              className={button.className}
+              onClick={this.handleClick}
+              value={button.value}
+              key={button.value}
+            >
+              {button.value}
+            </Button>
+          )
+          )}
+        </Wrapper>
+      </Centerer>
     )
   }
 }

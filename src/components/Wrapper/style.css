@@ -1,9 +1,10 @@
 .wrapper {
   box-sizing: border-box;
   width: 240px;
+  /* height: 340px; */
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
-  align-content: flex-start;
-  overflow: auto;
+  border-left: 1px solid black;
+  box-shadow: 0px 50px 100px 0px rgba(0, 0, 0, .5);
+
 }

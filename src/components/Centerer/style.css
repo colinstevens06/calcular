@@ -1,0 +1,7 @@
+.centerer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 25vh; */
+  height: 100vh;
+}
